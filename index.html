@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Byignis — Automatización y SaaS para MYPEs y Startups</title>
+  <meta name="description" content="Byignis crea soluciones de automatización, SaaS a medida y MVPs para MYPEs y startups en Latinoamérica. Ahorra tiempo, aumenta ingresos y escala tu negocio." />
+  <meta name="keywords" content="automatización, SaaS, MVP, startups, MYPEs, Latinoamérica, CRM, WhatsApp, integración, software a medida" />
+  <meta property="og:title" content="Byignis — Automatización y SaaS para MYPEs y Startups" />
+  <meta property="og:description" content="Automatizamos ventas, atención, facturación y más. Software SaaS a medida desde la idea hasta el lanzamiento." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://byignis.shop" />
+  <meta property="og:image" content="https://byignis.shop/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Byignis — Automatización y SaaS" />
+  <meta name="twitter:description" content="Automatizamos tu negocio para que escales sin fricciones." />
+  <link rel="canonical" href="https://byignis.shop" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="/img/favicon.png" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #080810;
+      --bg2: #0f0f1a;
+      --bg3: #141425;
+      --orange: #FF6B35;
+      --orange-dim: #cc5529;
+      --violet: #7B2FFF;
+      --violet-dim: #5a1fcc;
+      --text: #e8e8f0;
+      --text-muted: #8888aa;
+      --border: rgba(255,255,255,0.07);
+      --card-bg: rgba(255,255,255,0.04);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow: 0 20px 60px rgba(0,0,0,0.5);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Syne', sans-serif; line-height: 1.2; }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--violet); border-radius: 3px; }
+
+    /* ── NOISE TEXTURE ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 0; opacity: 0.4;
+    }
+
+    /* ── GLOW BLOBS ── */
+    .blob {
+      position: absolute; border-radius: 50%;
+      filter: blur(120px); pointer-events: none; z-index: 0;
+    }
+    .blob-1 { width: 500px; height: 500px; background: rgba(123,47,255,0.18); top: -100px; right: -100px; }
+    .blob-2 { width: 400px; height: 400px; background: rgba(255,107,53,0.12); bottom: 0; left: -100px; }
+
+    /* ── CONTAINER ── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── BADGE ── */
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,107,53,0.12); border: 1px solid rgba(255,107,53,0.25);
+      color: var(--orange); font-size: 13px; font-weight: 600;
+      padding: 6px 14px; border-radius: 100px; letter-spacing: 0.5px;
+    }
+    .badge::before { content: ''; width: 7px; height: 7px; background: var(--orange); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.3)} }
+
+    /* ── BUTTONS ── */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 600;
+      font-size: 15px; padding: 14px 28px; border-radius: var(--radius-sm);
+      cursor: pointer; border: none; transition: all .25s ease; text-decoration: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--orange), #ff8c5a);
+      color: white; box-shadow: 0 8px 30px rgba(255,107,53,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(255,107,53,0.5); }
+    .btn-ghost {
+      background: transparent; color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+    .btn-ghost:hover { border-color: rgba(255,255,255,0.3); background: var(--card-bg); }
+    .btn-violet {
+      background: linear-gradient(135deg, var(--violet), #9b4fff);
+      color: white; box-shadow: 0 8px 30px rgba(123,47,255,0.4);
+    }
+    .btn-violet:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(123,47,255,0.55); }
+    .btn svg { width: 18px; height: 18px; }
+
+    /* ── SECTION TITLE ── */
+    .section-title {
+      text-align: center; margin-bottom: 64px;
+    }
+    .section-title h2 {
+      font-size: clamp(32px, 5vw, 52px); font-weight: 800;
+      background: linear-gradient(135deg, #fff 40%, var(--text-muted));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; margin-bottom: 16px;
+    }
+    .section-title p { font-size: 17px; color: var(--text-muted); max-width: 560px; margin: 0 auto; }
+
+    /* ── REVEAL ANIMATIONS ── */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* ══════════════════════════════
+       NAVBAR
+    ══════════════════════════════ */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 20px 0; transition: all .3s ease;
+    }
+    .navbar.scrolled {
+      background: rgba(8,8,16,0.85); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border); padding: 14px 0;
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo {
+      font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 800;
+      background: linear-gradient(135deg, #fff, var(--text-muted));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--orange); -webkit-text-fill-color: var(--orange); }
+    .nav-links {
+      display: flex; align-items: center; gap: 32px; list-style: none;
+    }
+    .nav-links a {
+      font-size: 14px; font-weight: 500; color: var(--text-muted);
+      transition: color .2s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 2px; background: var(--orange); transform: scaleX(0);
+      transition: transform .25s; border-radius: 2px;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta { display: flex; align-items: center; gap: 12px; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all .3s; }
+    .mobile-menu {
+      display: none; position: fixed; inset: 0; background: var(--bg2);
+      flex-direction: column; align-items: center; justify-content: center; gap: 32px; z-index: 99;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 700; color: var(--text); }
+    .mobile-close { position: absolute; top: 24px; right: 24px; font-size: 32px; cursor: pointer; color: var(--text-muted); }
+
+    /* ══════════════════════════════
+       HERO
+    ══════════════════════════════ */
+    .hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 120px 0 80px; overflow: hidden;
+    }
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center;
+    }
+    .hero-eyebrow { margin-bottom: 24px; }
+    .hero-title {
+      font-size: clamp(40px, 6vw, 72px); font-weight: 800;
+      line-height: 1.08; letter-spacing: -1.5px; margin-bottom: 24px;
+    }
+    .hero-title .highlight {
+      background: linear-gradient(135deg, var(--orange) 0%, #ff9a6b 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-title .highlight-v {
+      background: linear-gradient(135deg, var(--violet), #b06fff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-desc {
+      font-size: 18px; color: var(--text-muted); line-height: 1.7;
+      max-width: 480px; margin-bottom: 40px; font-weight: 300;
+    }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    .hero-stats {
+      display: flex; gap: 32px; margin-top: 56px; padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+    .hero-stat-num {
+      font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 800;
+      background: linear-gradient(135deg, #fff, var(--text-muted));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-stat-label { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+    /* Hero illustration */
+    .hero-visual {
+      position: relative; display: flex; justify-content: center; align-items: center;
+    }
+    .hero-illustration {
+      width: 100%; max-width: 520px;
+      animation: float 6s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-18px)} }
+    .hero-glow {
+      position: absolute; width: 380px; height: 380px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(123,47,255,0.25), transparent 70%);
+      animation: glow-pulse 4s ease-in-out infinite;
+    }
+    @keyframes glow-pulse { 0%,100%{opacity:.7;transform:scale(1)} 50%{opacity:1;transform:scale(1.1)} }
+
+    /* ══════════════════════════════
+       SERVICES
+    ══════════════════════════════ */
+    .services { padding: 100px 0; position: relative; background: var(--bg2); }
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 36px 32px;
+      transition: all .3s ease; position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--violet), var(--orange));
+      transform: scaleX(0); transition: transform .3s ease; transform-origin: left;
+    }
+    .service-card:hover { transform: translateY(-6px); border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.06); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; margin-bottom: 24px;
+    }
+    .service-icon svg { width: 24px; height: 24px; }
+    .service-card:nth-child(1) .service-icon { background: rgba(255,107,53,0.12); color: var(--orange); }
+    .service-card:nth-child(2) .service-icon { background: rgba(123,47,255,0.12); color: var(--violet); }
+    .service-card:nth-child(3) .service-icon { background: rgba(59,130,246,0.12); color: #60a5fa; }
+    .service-card:nth-child(4) .service-icon { background: rgba(16,185,129,0.12); color: #34d399; }
+    .service-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+    .service-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+    .service-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tag {
+      font-size: 11px; font-weight: 600; padding: 4px 10px; border-radius: 100px;
+      background: rgba(255,255,255,0.06); color: var(--text-muted); letter-spacing: 0.3px;
+    }
+
+    /* ══════════════════════════════
+       WHY BYIGNIS
+    ══════════════════════════════ */
+    .why { padding: 100px 0; position: relative; }
+    .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .why-list { display: flex; flex-direction: column; gap: 28px; }
+    .why-item { display: flex; gap: 20px; align-items: flex-start; }
+    .why-icon-wrap {
+      width: 48px; height: 48px; flex-shrink: 0; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(255,107,53,0.15), rgba(123,47,255,0.15));
+      border: 1px solid var(--border);
+    }
+    .why-icon-wrap svg { width: 20px; height: 20px; }
+    .why-item:nth-child(1) .why-icon-wrap { color: var(--orange); }
+    .why-item:nth-child(2) .why-icon-wrap { color: #60a5fa; }
+    .why-item:nth-child(3) .why-icon-wrap { color: #34d399; }
+    .why-item:nth-child(4) .why-icon-wrap { color: var(--violet); }
+    .why-item h4 { font-size: 17px; font-weight: 700; margin-bottom: 6px; }
+    .why-item p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+    .why-visual {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 24px; padding: 32px; position: relative; overflow: hidden;
+    }
+    .why-visual-inner { display: flex; flex-direction: column; gap: 16px; }
+    .metric-row {
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .metric-label { font-size: 13px; color: var(--text-muted); display: flex; justify-content: space-between; }
+    .metric-bar-bg { height: 8px; background: rgba(255,255,255,0.06); border-radius: 100px; overflow: hidden; }
+    .metric-bar {
+      height: 100%; border-radius: 100px;
+      animation: grow 1.5s ease forwards; width: 0;
+    }
+    .bar-1 { background: linear-gradient(90deg, var(--orange), #ff9a6b); animation-delay: .2s; }
+    .bar-2 { background: linear-gradient(90deg, var(--violet), #b06fff); animation-delay: .4s; }
+    .bar-3 { background: linear-gradient(90deg, #3b82f6, #60a5fa); animation-delay: .6s; }
+    .bar-4 { background: linear-gradient(90deg, #10b981, #34d399); animation-delay: .8s; }
+    @keyframes grow { to { width: var(--target); } }
+    .why-number {
+      font-family: 'Syne', sans-serif; font-size: 64px; font-weight: 800;
+      background: linear-gradient(135deg, var(--orange), var(--violet));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text; line-height: 1; margin-bottom: 4px;
+    }
+    .why-sub { font-size: 14px; color: var(--text-muted); }
+
+    /* ══════════════════════════════
+       PROCESS
+    ══════════════════════════════ */
+    .process { padding: 100px 0; background: var(--bg2); }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 0; position: relative;
+    }
+    .process-steps::before {
+      content: ''; position: absolute; top: 36px; left: 10%; right: 10%;
+      height: 1px; background: linear-gradient(90deg, transparent, var(--border), var(--border), transparent);
+      z-index: 0;
+    }
+    .step {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; padding: 0 16px; position: relative; z-index: 1;
+    }
+    .step-num {
+      width: 72px; height: 72px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800;
+      border: 2px solid var(--border); margin-bottom: 24px;
+      background: var(--bg2); transition: all .3s ease;
+    }
+    .step:nth-child(1) .step-num { background: linear-gradient(135deg, rgba(255,107,53,.2), rgba(255,107,53,.05)); border-color: rgba(255,107,53,.4); color: var(--orange); }
+    .step:nth-child(2) .step-num { background: linear-gradient(135deg, rgba(123,47,255,.2), rgba(123,47,255,.05)); border-color: rgba(123,47,255,.4); color: var(--violet); }
+    .step:nth-child(3) .step-num { background: linear-gradient(135deg, rgba(59,130,246,.2), rgba(59,130,246,.05)); border-color: rgba(59,130,246,.4); color: #60a5fa; }
+    .step:nth-child(4) .step-num { background: linear-gradient(135deg, rgba(16,185,129,.2), rgba(16,185,129,.05)); border-color: rgba(16,185,129,.4); color: #34d399; }
+    .step:nth-child(5) .step-num { background: linear-gradient(135deg, rgba(245,158,11,.2), rgba(245,158,11,.05)); border-color: rgba(245,158,11,.4); color: #fbbf24; }
+    .step h4 { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .step p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+
+    /* ══════════════════════════════
+       FOR WHOM
+    ══════════════════════════════ */
+    .forwho { padding: 100px 0; }
+    .forwho-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .forwho-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 32px; transition: all .3s ease;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .forwho-card:hover { transform: translateY(-4px); border-color: rgba(123,47,255,.4); box-shadow: 0 20px 50px rgba(123,47,255,.1); }
+    .forwho-icon {
+      width: 52px; height: 52px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .forwho-icon svg { width: 26px; height: 26px; }
+    .forwho-card:nth-child(1) .forwho-icon { background: rgba(255,107,53,0.1); color: var(--orange); border: 1px solid rgba(255,107,53,0.2); }
+    .forwho-card:nth-child(2) .forwho-icon { background: rgba(123,47,255,0.1); color: var(--violet); border: 1px solid rgba(123,47,255,0.2); }
+    .forwho-card:nth-child(3) .forwho-icon { background: rgba(59,130,246,0.1); color: #60a5fa; border: 1px solid rgba(59,130,246,0.2); }
+    .forwho-card:nth-child(4) .forwho-icon { background: rgba(16,185,129,0.1); color: #34d399; border: 1px solid rgba(16,185,129,0.2); }
+    .forwho-card h3 { font-size: 18px; font-weight: 700; }
+    .forwho-card p { font-size: 14px; color: var(--text-muted); line-height: 1.6; }
+    .forwho-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; }
+
+    /* ══════════════════════════════
+       TESTIMONIALS
+    ══════════════════════════════ */
+    .testimonials { padding: 100px 0; background: var(--bg2); }
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 36px 32px;
+      position: relative; transition: all .3s ease;
+    }
+    .testimonial-card:hover { border-color: rgba(123,47,255,.3); transform: translateY(-4px); }
+    .testimonial-card::before {
+      content: '\201C'; position: absolute; top: 20px; right: 28px;
+      font-family: 'Syne', sans-serif; font-size: 80px; line-height: 1;
+      color: rgba(123,47,255,.15); font-weight: 800;
+    }
+    .testimonial-quote {
+      font-size: 16px; color: var(--text); line-height: 1.8;
+      margin-bottom: 28px; font-weight: 300;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 14px; }
+    .testimonial-avatar {
+      width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--violet), var(--orange));
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700; color: white;
+    }
+    .testimonial-name { font-size: 15px; font-weight: 700; }
+    .testimonial-role { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+    /* ══════════════════════════════
+       CTA SECTION
+    ══════════════════════════════ */
+    .cta-section {
+      padding: 120px 0; position: relative; overflow: hidden;
+    }
+    .cta-box {
+      background: linear-gradient(135deg, rgba(123,47,255,.15) 0%, rgba(255,107,53,.1) 100%);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 28px; padding: 80px 60px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-box::before {
+      content: ''; position: absolute; inset: -1px;
+      background: linear-gradient(135deg, rgba(123,47,255,.4), transparent 50%, rgba(255,107,53,.3));
+      border-radius: 28px; z-index: -1; padding: 1px;
+    }
+    .cta-box h2 {
+      font-size: clamp(32px, 5vw, 56px); font-weight: 800; margin-bottom: 20px;
+      background: linear-gradient(135deg, #fff 50%, var(--text-muted));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .cta-box p { font-size: 18px; color: var(--text-muted); margin-bottom: 48px; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .cta-blob-1 {
+      position: absolute; width: 300px; height: 300px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(123,47,255,.25), transparent 70%);
+      top: -80px; left: -80px; pointer-events: none;
+    }
+    .cta-blob-2 {
+      position: absolute; width: 250px; height: 250px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,107,53,.2), transparent 70%);
+      bottom: -60px; right: -60px; pointer-events: none;
+    }
+
+    /* ══════════════════════════════
+       FOOTER
+    ══════════════════════════════ */
+    footer {
+      background: var(--bg2); border-top: 1px solid var(--border);
+      padding: 64px 0 32px;
+    }
+    .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px; margin-bottom: 48px;
+    }
+    .footer-brand p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-top: 16px; max-width: 260px; }
+    .footer-socials { display: flex; gap: 12px; margin-top: 24px; }
+    .social-btn {
+      width: 38px; height: 38px; border-radius: 10px;
+      border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted); transition: all .2s ease; font-size: 16px;
+    }
+    .social-btn:hover { border-color: var(--orange); color: var(--orange); background: rgba(255,107,53,.08); }
+    .footer-col h4 { font-size: 14px; font-weight: 700; margin-bottom: 16px; color: var(--text); letter-spacing: 0.3px; }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 14px; color: var(--text-muted); transition: color .2s; }
+    .footer-links a:hover { color: var(--text); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 32px; border-top: 1px solid var(--border);
+      font-size: 13px; color: var(--text-muted);
+    }
+    .footer-bottom a { color: var(--orange); }
+
+    /* ══════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════ */
+    @media (max-width: 1024px) {
+      .process-steps { grid-template-columns: repeat(3, 1fr); row-gap: 40px; }
+      .process-steps::before { display: none; }
+      .why-grid { grid-template-columns: 1fr; gap: 48px; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta .btn { display: none; }
+      .hamburger { display: flex; }
+      .hero-grid { grid-template-columns: 1fr; gap: 48px; }
+      .hero-visual { display: none; }
+      .hero-stats { gap: 20px; flex-wrap: wrap; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .cta-box { padding: 48px 24px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .process-steps { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════
+     NAVBAR
+════════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">By<span>ignis</span></a>
+      <ul class="nav-links">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#para-quien">Para quién</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="https://wa.me/+51976420879?text=Hola%2C%20quiero%20hablar%20con%20un%20experto%20de%20Byignis" target="_blank" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.524 5.855L.057 23.929l6.235-1.635A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.374l-.36-.214-3.7.97.988-3.61-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>
+          Hablar con un experto
+        </a>
+        <div class="hamburger" onclick="toggleMenu()">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <span class="mobile-close" onclick="toggleMenu()">&#x2715;</span>
+  <a href="#servicios" onclick="toggleMenu()">Servicios</a>
+  <a href="#proceso" onclick="toggleMenu()">Proceso</a>
+  <a href="#para-quien" onclick="toggleMenu()">Para quién</a>
+  <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+  <a href="https://wa.me/+51976420879" target="_blank" class="btn btn-primary">WhatsApp</a>
+</div>
+
+<!-- ═══════════════════════════════════
+     HERO
+════════════════════════════════════ -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow reveal">
+          <span class="badge">Automatización inteligente para Latam</span>
+        </div>
+        <h1 class="hero-title reveal">
+          Tu negocio en<br />
+          <span class="highlight">piloto automático.</span><br />
+          Tú enfocado en<br />
+          <span class="highlight-v">lo que importa.</span>
+        </h1>
+        <p class="hero-desc reveal">
+          Creamos soluciones de automatización, SaaS a medida y MVPs para MYPEs y startups.
+          Ahorra tiempo, elimina procesos manuales y escala sin fricciones.
+        </p>
+        <div class="hero-actions reveal">
+          <a href="https://wa.me/+51976420879?text=Quiero%20automatizar%20mi%20negocio%20con%20Byignis" target="_blank" class="btn btn-primary">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.524 5.855L.057 23.929l6.235-1.635A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.374l-.36-.214-3.7.97.988-3.61-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>
+            Agenda una consultoría gratis
+          </a>
+          <a href="#servicios" class="btn btn-ghost">Ver servicios &rarr;</a>
+        </div>
+        <div class="hero-stats reveal">
+          <div>
+            <div class="hero-stat-num">40+</div>
+            <div class="hero-stat-label">Procesos automatizados</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">3x</div>
+            <div class="hero-stat-label">Más eficiencia operativa</div>
+          </div>
+          <div>
+            <div class="hero-stat-num">72h</div>
+            <div class="hero-stat-label">Tiempo promedio de entrega MVP</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-visual reveal-right">
+        <div class="hero-glow"></div>
+        <svg class="hero-illustration" viewBox="0 0 480 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#7B2FFF" stop-opacity="0.8"/>
+              <stop offset="100%" stop-color="#FF6B35" stop-opacity="0.8"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#FF6B35"/>
+              <stop offset="100%" stop-color="#7B2FFF"/>
+            </linearGradient>
+          </defs>
+          <!-- Central hub -->
+          <circle cx="240" cy="220" r="72" fill="rgba(123,47,255,0.1)" stroke="url(#g1)" stroke-width="1.5"/>
+          <circle cx="240" cy="220" r="48" fill="rgba(123,47,255,0.15)" stroke="url(#g1)" stroke-width="1"/>
+          <text x="240" y="225" text-anchor="middle" dominant-baseline="middle" font-family="'Syne',sans-serif" font-size="28" font-weight="800" fill="url(#g1)">B</text>
+          <!-- Orbit ring -->
+          <circle cx="240" cy="220" r="130" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="6 4"/>
+          <!-- Node: Automatización -->
+          <circle cx="240" cy="90" r="28" fill="rgba(255,107,53,0.15)" stroke="rgba(255,107,53,0.4)" stroke-width="1.5"/>
+          <text x="240" y="94" text-anchor="middle" dominant-baseline="middle" font-family="'Syne',sans-serif" font-size="13" font-weight="700" fill="rgba(255,107,53,0.9)">AUTO</text>
+          <line x1="240" y1="118" x2="240" y2="172" stroke="rgba(255,107,53,0.3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <!-- Node: Integraciones -->
+          <circle cx="370" cy="175" r="28" fill="rgba(59,130,246,0.15)" stroke="rgba(59,130,246,0.4)" stroke-width="1.5"/>
+          <text x="370" y="179" text-anchor="middle" dominant-baseline="middle" font-family="'Syne',sans-serif" font-size="13" font-weight="700" fill="rgba(59,130,246,0.9)">INT</text>
+          <line x1="345" y1="186" x2="288" y2="205" stroke="rgba(59,130,246,0.3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <!-- Node: Datos -->
+          <circle cx="370" cy="265" r="28" fill="rgba(16,185,129,0.15)" stroke="rgba(16,185,129,0.4)" stroke-width="1.5"/>
+          <text x="370" y="269" text-anchor="middle" dominant-baseline="middle" font-family="'Syne',sans-serif" font-size="13" font-weight="700" fill="rgba(16,185,129,0.9)">DATA</text>
+          <line x1="345" y1="256" x2="288" y2="234" stroke="rgba(16,185,129,0.3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <!-- Node: Lanzamiento -->
+          <circle cx="240" cy="350" r="28" fill="rgba(245,158,11,0.15)" stroke="rgba(245,158,11,0.4)" stroke-width="1.5"/>
+          <text x="240" y="354" text-anchor="middle" dominant-baseline="middle" font-family="'Syne',sans-serif" font-size="13" font-weight="700" fill="rgba(245,158,11,0.9)">MVP</text>
+          <line x1="240" y1="322" x2="240" y2="268" stroke="rgba(245,158,11,0.3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <!-- Node: Comunicación -->
+          <circle cx="110" cy="265" r="28" fill="rgba(236,72,153,0.15)" stroke="rgba(236,72,153,0.4)" stroke-width="1.5"/>
+          <text x="110" y="269" text-anchor="middle" dominant-baseline="middle" font-family="'Syne',sans-serif" font-size="13" font-weight="700" fill="rgba(236,72,153,0.9)">COM</text>
+          <line x1="135" y1="256" x2="192" y2="234" stroke="rgba(236,72,153,0.3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <!-- Node: IA -->
+          <circle cx="110" cy="175" r="28" fill="rgba(123,47,255,0.15)" stroke="rgba(123,47,255,0.4)" stroke-width="1.5"/>
+          <text x="110" y="179" text-anchor="middle" dominant-baseline="middle" font-family="'Syne',sans-serif" font-size="14" font-weight="700" fill="rgba(123,47,255,0.9)">IA</text>
+          <line x1="135" y1="186" x2="192" y2="205" stroke="rgba(123,47,255,0.3)" stroke-width="1.5" stroke-dasharray="4 3"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     SERVICES
+════════════════════════════════════ -->
+<section class="services" id="servicios">
+  <div class="container">
+    <div class="section-title reveal">
+      <h2>Nuestros servicios</h2>
+      <p>Desde automatización hasta desarrollo SaaS — todo lo que tu negocio necesita para escalar.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <h3>Automatización de procesos</h3>
+        <p>Eliminamos tareas manuales y repetitivas: ventas, atención al cliente, facturación, reportes y CRM. Tu equipo trabaja en lo que realmente importa.</p>
+        <div class="service-tags">
+          <span class="tag">Ventas</span><span class="tag">Facturación</span><span class="tag">CRM</span><span class="tag">Reportes</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h3>Desarrollo SaaS a medida</h3>
+        <p>Diseñamos y construimos software SaaS adaptado a tu modelo de negocio. Desde arquitectura hasta despliegue en producción con infraestructura escalable.</p>
+        <div class="service-tags">
+          <span class="tag">SaaS</span><span class="tag">Backend</span><span class="tag">API</span><span class="tag">Cloud</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+        </div>
+        <h3>MVPs para startups</h3>
+        <p>Transformamos tu idea en un producto funcional en tiempo récord. Desde el concepto hasta el primer usuario real, con foco en validación y aprendizaje.</p>
+        <div class="service-tags">
+          <span class="tag">MVP</span><span class="tag">Startup</span><span class="tag">Validación</span><span class="tag">Agile</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+        </div>
+        <h3>Integraciones &amp; conectores</h3>
+        <p>Conectamos tu stack tecnológico: WhatsApp Business, CRM, pasarelas de pago, ERP y más. Todo sincronizado y funcionando en tiempo real.</p>
+        <div class="service-tags">
+          <span class="tag">WhatsApp</span><span class="tag">CRM</span><span class="tag">Pasarelas</span><span class="tag">API</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     WHY BYIGNIS
+════════════════════════════════════ -->
+<section class="why" id="por-que">
+  <div class="container">
+    <div class="why-grid">
+      <div>
+        <div class="reveal" style="margin-bottom:16px"><span class="badge">¿Por qué elegirnos?</span></div>
+        <h2 class="reveal" style="font-size:clamp(32px,4vw,48px);font-weight:800;margin-bottom:48px;background:linear-gradient(135deg,#fff 50%,rgba(255,255,255,.5));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Lo que nos hace diferentes</h2>
+        <div class="why-list">
+          <div class="why-item reveal">
+            <div class="why-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <h4>Rapidez de entrega</h4>
+              <p>MVPs en 72 horas, automatizaciones en días. Sin burocracia, sin esperas infinitas. Metodología ágil real.</p>
+            </div>
+          </div>
+          <div class="why-item reveal">
+            <div class="why-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <div>
+              <h4>Todo se mide</h4>
+              <p>Cada implementación incluye dashboards y métricas. Verás el ROI de cada automatización en tiempo real.</p>
+            </div>
+          </div>
+          <div class="why-item reveal">
+            <div class="why-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </div>
+            <div>
+              <h4>Escalabilidad real</h4>
+              <p>Construimos pensando en el crecimiento. Tu solución de hoy soportará 100x más volumen mañana.</p>
+            </div>
+          </div>
+          <div class="why-item reveal">
+            <div class="why-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            </div>
+            <div>
+              <h4>Soporte continuo</h4>
+              <p>No desaparecemos después del lanzamiento. Somos tu equipo técnico externo, siempre disponible.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="why-visual reveal-right">
+        <div style="margin-bottom:32px">
+          <div class="why-number">98%</div>
+          <div class="why-sub">de clientes renuevan con nosotros</div>
+        </div>
+        <div class="why-visual-inner">
+          <div class="metric-row">
+            <div class="metric-label"><span>Ahorro en tiempo operativo</span><span>85%</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar bar-1" style="--target:85%"></div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-label"><span>Reducción de errores manuales</span><span>92%</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar bar-2" style="--target:92%"></div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-label"><span>Velocidad de entrega vs. agencias</span><span>3x</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar bar-3" style="--target:78%"></div></div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-label"><span>Satisfacción del cliente</span><span>98%</span></div>
+            <div class="metric-bar-bg"><div class="metric-bar bar-4" style="--target:98%"></div></div>
+          </div>
+        </div>
+        <div style="margin-top:28px;padding-top:24px;border-top:1px solid var(--border);display:flex;gap:24px">
+          <div><div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--orange)">50+</div><div style="font-size:12px;color:var(--text-muted)">Proyectos entregados</div></div>
+          <div><div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--violet)">8</div><div style="font-size:12px;color:var(--text-muted)">Países en Latam</div></div>
+          <div><div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:#34d399">72h</div><div style="font-size:12px;color:var(--text-muted)">Primer MVP promedio</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     PROCESS
+════════════════════════════════════ -->
+<section class="process" id="proceso">
+  <div class="container">
+    <div class="section-title reveal">
+      <h2>¿Cómo trabajamos?</h2>
+      <p>Un proceso claro, ágil y transparente. Sabrás exactamente en qué etapa estás en todo momento.</p>
+    </div>
+    <div class="process-steps">
+      <div class="step reveal">
+        <div class="step-num">01</div>
+        <h4>Consultoría</h4>
+        <p>Analizamos tu negocio, identificamos los procesos a automatizar y definimos el alcance del proyecto.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">02</div>
+        <h4>Diseño</h4>
+        <p>Diseñamos la arquitectura técnica, los flujos y los wireframes. Sin sorpresas después.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">03</div>
+        <h4>Desarrollo</h4>
+        <p>Construimos con metodología ágil. Iteraciones cortas, entregas frecuentes y feedback continuo.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">04</div>
+        <h4>Lanzamiento</h4>
+        <p>Desplegamos, configuramos y capacitamos a tu equipo. Tu solución lista para producción.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">05</div>
+        <h4>Soporte</h4>
+        <p>Monitoreo continuo, mejoras iterativas y soporte técnico. No estás solo después del lanzamiento.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     FOR WHOM
+════════════════════════════════════ -->
+<section class="forwho" id="para-quien">
+  <div class="container">
+    <div class="section-title reveal">
+      <h2>¿Para quién es Byignis?</h2>
+      <p>Si tienes procesos manuales que consumen tiempo o una idea que necesita convertirse en producto, somos tu equipo.</p>
+    </div>
+    <div class="forwho-grid">
+      <div class="forwho-card reveal">
+        <div class="forwho-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>MYPEs en crecimiento</h3>
+        <p>Negocios que quieren escalar sin contratar más personas. Automatiza ventas, inventario, reportes y atención al cliente.</p>
+        <div class="forwho-tags">
+          <span class="tag">Retail</span><span class="tag">Servicios</span><span class="tag">Manufactura</span>
+        </div>
+      </div>
+      <div class="forwho-card reveal">
+        <div class="forwho-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        </div>
+        <h3>E-commerce &amp; DTC</h3>
+        <p>Tiendas online que necesitan automatizar pedidos, notificaciones, seguimiento y CRM de clientes en un solo flujo.</p>
+        <div class="forwho-tags">
+          <span class="tag">Shopify</span><span class="tag">WooCommerce</span><span class="tag">D2C</span>
+        </div>
+      </div>
+      <div class="forwho-card reveal">
+        <div class="forwho-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></svg>
+        </div>
+        <h3>Startups tech</h3>
+        <p>Fundadores que necesitan un equipo técnico de alto nivel para construir su MVP y lanzar al mercado sin perder tiempo.</p>
+        <div class="forwho-tags">
+          <span class="tag">MVP</span><span class="tag">SaaS</span><span class="tag">Fintech</span>
+        </div>
+      </div>
+      <div class="forwho-card reveal">
+        <div class="forwho-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+        </div>
+        <h3>Procesos manuales</h3>
+        <p>Cualquier negocio donde el equipo pierde horas en tareas repetitivas: hojas de cálculo, emails manuales, reportes.</p>
+        <div class="forwho-tags">
+          <span class="tag">Excel &rarr; App</span><span class="tag">Flujos</span><span class="tag">Reportes</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════ -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-title reveal">
+      <h2>Lo que dicen nuestros clientes</h2>
+      <p>Empresas y startups de Latinoamérica que transformaron su operación con Byignis.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <p class="testimonial-quote">
+          "Byignis automatizó nuestra facturación y atención al cliente en menos de una semana. Ahorramos más de 30 horas semanales que antes se iban en tareas manuales. El ROI fue visible desde el primer mes."
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">CM</div>
+          <div>
+            <div class="testimonial-name">Carlos Mendoza</div>
+            <div class="testimonial-role">CEO — TechRetail Perú</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <p class="testimonial-quote">
+          "Teníamos la idea, nos faltaba el equipo técnico. Byignis entregó nuestro MVP funcional en 72 horas. Lanzamos al mercado en tiempo récord y ya tenemos nuestros primeros usuarios pagando."
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">AG</div>
+          <div>
+            <div class="testimonial-name">Ana García</div>
+            <div class="testimonial-role">Fundadora — Fintú</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal">
+        <p class="testimonial-quote">
+          "Integraron nuestro CRM, WhatsApp y ERP en un solo flujo. Lo que antes tomaba horas ahora es automático. La eficiencia operativa mejoró un 80% y nuestro equipo ahora se enfoca en vender."
+        </p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">RS</div>
+          <div>
+            <div class="testimonial-name">Roberto Silva</div>
+            <div class="testimonial-role">Director — Distribuidora Andina</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     CTA FINAL
+════════════════════════════════════ -->
+<section class="cta-section" id="contacto">
+  <div class="container">
+    <div class="cta-box reveal">
+      <div class="cta-blob-1"></div>
+      <div class="cta-blob-2"></div>
+      <span class="badge" style="margin-bottom:24px">Comienza hoy</span>
+      <h2>¿Listo para automatizar<br />tu negocio?</h2>
+      <p>Agenda una consultoría gratuita de 30 minutos. Analizamos tu situación y te decimos exactamente qué automatizar primero.</p>
+      <div class="cta-actions">
+        <a href="https://wa.me/+51976420879?text=Hola%20Byignis%2C%20quiero%20una%20consultor%C3%ADa%20gratuita" target="_blank" class="btn btn-primary" style="font-size:16px;padding:16px 32px">
+          <svg viewBox="0 0 24 24" fill="currentColor" style="width:20px;height:20px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.125.555 4.122 1.524 5.855L.057 23.929l6.235-1.635A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.007-1.374l-.36-.214-3.7.97.988-3.61-.234-.371A9.818 9.818 0 1112 21.818z"/></svg>
+          Consultoría gratuita por WhatsApp
+        </a>
+        <a href="mailto:admin@byignis.shop" class="btn btn-ghost" style="font-size:16px;padding:16px 32px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Enviar email
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════
+     FOOTER
+════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">By<span>ignis</span></a>
+        <p>Automatización y software SaaS para MYPEs y startups en Latinoamérica. Escalamos tu negocio con tecnología.</p>
+        <div class="footer-socials">
+          <a href="#" class="social-btn" title="LinkedIn">in</a>
+          <a href="#" class="social-btn" title="Instagram">ig</a>
+          <a href="#" class="social-btn" title="Twitter/X">&#x1D54F;</a>
+          <a href="https://wa.me/+51976420879" target="_blank" class="social-btn" title="WhatsApp">wa</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <div class="footer-links">
+          <a href="#servicios">Automatización</a>
+          <a href="#servicios">Desarrollo SaaS</a>
+          <a href="#servicios">MVPs</a>
+          <a href="#servicios">Integraciones</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <div class="footer-links">
+          <a href="#por-que">¿Por qué Byignis?</a>
+          <a href="#proceso">Proceso</a>
+          <a href="#para-quien">Para quién</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <div class="footer-links">
+          <a href="mailto:admin@byignis.shop">admin@byignis.shop</a>
+          <a href="https://wa.me/+51976420879" target="_blank">WhatsApp</a>
+          <a href="#">byignis.shop</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Byignis. Todos los derechos reservados.</span>
+      <span>Hecho en Latinoamérica &middot; <a href="mailto:admin@byignis.shop">admin@byignis.shop</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+    document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+  }
+
+  // Intersection Observer for animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // Stagger children
+        const siblings = entry.target.parentElement.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        siblings.forEach((el, i) => {
+          if (el === entry.target) {
+            el.style.transitionDelay = (i * 0.1) + 's';
+          }
+        });
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+  // Smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
