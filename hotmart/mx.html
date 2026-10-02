@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>200 planos de muebles para el hogar · byignis</title>
+<meta name="description" content="200 planos de carpintería en PDF con vistas acotadas, despiece, lista de materiales y armado paso a paso. Descarga inmediata.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#211f1c; --line-dark:#3b3732; --muted-dark:#c9c2b8;
+    --sand:#f7f3ee; --line:#e3dcd2; --muted:#6b645c;
+    --ember:#d1542a; --ember-dark:#b54420; --white:#fff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:Barlow,system-ui,sans-serif;background:var(--sand);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+  img{max-width:100%;display:block}
+  h1,h2,h3{font-family:'Barlow Condensed',sans-serif;line-height:1;letter-spacing:-.3px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--ember);color:#fff;font-weight:700;font-size:18px;padding:16px 28px;border-radius:999px;text-decoration:none;transition:background .15s}
+  .btn:hover{background:var(--ember-dark)}
+  .btn small{font-weight:500;opacity:.9}
+
+  /* hero */
+  .hero{background:var(--ink);color:#fff;padding:28px 0 0}
+  .top{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--muted-dark);letter-spacing:1.5px;text-transform:uppercase}
+  .brand{font-family:'Barlow Condensed';font-weight:700;font-size:28px;color:#fff;text-transform:none;letter-spacing:0}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center;padding:48px 0 56px}
+  .hero h1{font-size:clamp(52px,8vw,92px)}
+  .hero h1 span{color:var(--ember)}
+  .hero p.lead{color:var(--muted-dark);font-size:20px;margin:20px 0 24px;max-width:480px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+  .chip{border:1px solid var(--line-dark);border-radius:999px;padding:6px 14px;font-size:14px;font-weight:600}
+  .trust{display:flex;flex-wrap:wrap;gap:16px;margin-top:16px;font-size:14px;color:var(--muted-dark)}
+  .trust span::before{content:"✓ ";color:var(--ember);font-weight:700}
+  .hero-img{position:relative}
+  .hero-img img{background:#fff;border-radius:8px;box-shadow:0 30px 60px rgba(0,0,0,.5)}
+  .hero-img .a{transform:rotate(3deg)}
+  .hero-img .b{position:absolute;width:44%;left:-8%;bottom:-10%;padding:10px;border-radius:12px;transform:rotate(-3deg)}
+  .stats{background:var(--ember);color:#fff}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;padding-top:22px;padding-bottom:22px}
+  .stats b{display:block;font-family:'Barlow Condensed';font-size:44px;line-height:1}
+  .stats span{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;opacity:.92}
+
+  section{padding:72px 0}
+  .eyebrow{color:var(--ember);font-weight:700;text-transform:uppercase;letter-spacing:1.5px;font-size:13px;margin-bottom:10px}
+  section h2{font-size:clamp(36px,5vw,52px);margin-bottom:12px}
+  .sub{color:var(--muted);font-size:18px;max-width:620px}
+
+  /* muestras */
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:36px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px}
+  .card img{aspect-ratio:1;object-fit:contain;margin-bottom:10px}
+  .card .code{color:var(--ember);font-weight:700;font-size:12px;letter-spacing:1px}
+  .card h3{font-family:Barlow;font-size:16px;font-weight:700;line-height:1.25;margin:2px 0 4px}
+  .card p{color:var(--muted);font-size:13px}
+
+  /* hojas */
+  .sheets{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px}
+  .sheets figure{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px}
+  .sheets figcaption{font-weight:700;margin-top:10px;font-size:15px}
+  .feats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:32px}
+  .feat h3{font-family:Barlow;font-size:17px;font-weight:700;margin-bottom:4px}
+  .feat p{color:var(--muted);font-size:15px}
+
+  /* categorias */
+  .dark{background:var(--ink);color:#fff}
+  .dark .sub{color:var(--muted-dark)}
+  .cats{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:32px}
+  .cat{border:1px solid var(--line-dark);border-radius:10px;padding:16px}
+  .cat b{display:block;font-family:'Barlow Condensed';font-size:34px;color:var(--ember);line-height:1}
+  .cat span{font-weight:600;font-size:15px}
+
+  /* oferta */
+  .offer{background:#fff;border:1px solid var(--line);border-radius:16px;padding:36px;max-width:620px;margin:36px auto 0}
+  .offer ul{list-style:none;margin:20px 0 24px}
+  .offer li{padding:9px 0;border-bottom:1px solid var(--line);font-size:16px}
+  .offer li::before{content:"✓  ";color:var(--ember);font-weight:700}
+  .price{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+  .price b{font-family:'Barlow Condensed';font-size:64px;line-height:1}
+  .price s{color:var(--muted);font-size:22px}
+  .note{color:var(--muted);font-size:14px;margin-bottom:22px}
+  .offer .btn{width:100%}
+  .pay{color:var(--muted);font-size:13px;text-align:center;margin-top:12px}
+
+  /* faq */
+  .faq{max-width:760px;margin-top:28px}
+  details{border-bottom:1px solid var(--line);padding:18px 0}
+  summary{font-weight:700;font-size:17px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px}
+  summary::after{content:"+";color:var(--ember);font-size:22px;line-height:1}
+  details[open] summary::after{content:"–"}
+  details p{color:var(--muted);margin-top:10px}
+
+  footer{background:var(--ink);color:var(--muted-dark);font-size:14px;padding:40px 0 110px;text-align:center}
+  footer .btn{margin-bottom:28px}
+
+  /* barra fija móvil */
+  .sticky{position:fixed;left:0;right:0;bottom:0;background:var(--ink);border-top:1px solid var(--line-dark);padding:12px 16px;display:none;align-items:center;justify-content:space-between;gap:12px;z-index:10;color:#fff}
+  .sticky b{font-family:'Barlow Condensed';font-size:28px;line-height:1}
+  .sticky small{display:block;color:var(--muted-dark);font-size:12px}
+  .sticky .btn{padding:12px 22px;font-size:16px}
+
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;padding:32px 0 64px}
+    .hero-img{max-width:440px;margin:0 auto 0 12%}
+    .stats .wrap{grid-template-columns:repeat(2,1fr);row-gap:16px}
+    .cards{grid-template-columns:repeat(2,1fr)}
+    .sheets{grid-template-columns:1fr}
+    .feats{grid-template-columns:1fr 1fr}
+    .cats{grid-template-columns:repeat(2,1fr)}
+    .offer{padding:24px}
+    section{padding:56px 0}
+    .sticky{display:flex}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="top"><div class="brand">byignis</div><div>Planos de carpintería · PDF</div></div>
+    <div class="hero-grid">
+      <div>
+        <h1>200 planos<br>de <span>muebles</span><br>para el hogar</h1>
+        <p class="lead">Planos de carpintería con vistas acotadas, despiece, lista de materiales y armado paso a paso. Fabrica tus muebles sin adivinar medidas.</p>
+        <div class="chips">
+          <span class="chip">Melamina, MDF y madera</span>
+          <span class="chip">Medidas en mm</span>
+          <span class="chip">Paso a paso</span>
+          <span class="chip">10 categorías</span>
+        </div>
+        <a class="btn hotmart-link" href="#comprar">Quiero los 200 planos <small>· $149 MXN</small></a>
+        <div class="trust"><span>Descarga inmediata</span><span>Tarjeta u OXXO</span><span>Garantía de 7 días</span></div>
+      </div>
+      <div class="hero-img">
+        <img class="a" src="/planos/hojas/SAL-02-1.webp" alt="Hoja de vistas y medidas del mueble de TV SAL-02">
+        <img class="b" src="/planos/iso/SAL-02.webp" alt="Mueble de TV 150 con cajones">
+      </div>
+    </div>
+  </div>
+  <div class="stats"><div class="wrap">
+    <div><b>200</b><span>planos</span></div>
+    <div><b>414</b><span>páginas en PDF</span></div>
+    <div><b>10</b><span>categorías</span></div>
+    <div><b>mm</b><span>cotas exactas</span></div>
+  </div></div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Lo que te llevas</div>
+    <h2>Algunos de los 200 muebles</h2>
+    <p class="sub">Cada uno con vistas acotadas, despiece y armado paso a paso. Y son solo una parte del catálogo.</p>
+    <div class="cards">
+      <div class="card"><img src="/planos/iso/SAL-02.webp" alt="" loading="lazy"><div class="code">SAL-02</div><h3>Mueble de TV 150 con cajones</h3><p>1500 × 440 × 520 mm · Avanzado</p></div>
+      <div class="card"><img src="/planos/iso/COM-02.webp" alt="" loading="lazy"><div class="code">COM-02</div><h3>Mesa de comedor 6 personas</h3><p>1600 × 900 × 760 mm · Básico</p></div>
+      <div class="card"><img src="/planos/iso/DOR-17.webp" alt="" loading="lazy"><div class="code">DOR-17</div><h3>Ropero 3 puertas 135</h3><p>1350 × 568 × 2000 mm · Avanzado</p></div>
+      <div class="card"><img src="/planos/iso/COC-09.webp" alt="" loading="lazy"><div class="code">COC-09</div><h3>Mueble bajo de cocina 120 con cajonera</h3><p>1200 × 578 × 870 mm · Avanzado</p></div>
+      <div class="card"><img src="/planos/iso/EST-03.webp" alt="" loading="lazy"><div class="code">EST-03</div><h3>Escritorio 120 con cajonera</h3><p>1200 × 618 × 750 mm · Avanzado</p></div>
+      <div class="card"><img src="/planos/iso/INF-03.webp" alt="" loading="lazy"><div class="code">INF-03</div><h3>Litera 90 × 190</h3><p>1125 × 2060 × 1650 mm · Intermedio</p></div>
+      <div class="card"><img src="/planos/iso/BAN-02.webp" alt="" loading="lazy"><div class="code">BAN-02</div><h3>Mueble de lavabo 90 con cajonera</h3><p>900 × 480 × 850 mm · Avanzado</p></div>
+      <div class="card"><img src="/planos/iso/EXT-12.webp" alt="" loading="lazy"><div class="code">EXT-12</div><h3>Huerto elevado 120 × 60</h3><p>1220 × 620 × 850 mm · Básico</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="eyebrow">Así es cada plano por dentro</div>
+    <h2>Dos hojas con todo lo que necesitas</h2>
+    <p class="sub">Estas son páginas reales del catálogo, tal como las vas a descargar.</p>
+    <div class="sheets">
+      <figure><img src="/planos/hojas/SAL-02-1.webp" alt="Hoja 1: vistas y medidas" loading="lazy"><figcaption>Hoja 1 · Vistas y medidas</figcaption></figure>
+      <figure><img src="/planos/hojas/SAL-02-2.webp" alt="Hoja 2: despiece y armado" loading="lazy"><figcaption>Hoja 2 · Despiece y armado</figcaption></figure>
+    </div>
+    <div class="feats">
+      <div class="feat"><h3>Vistas acotadas en mm</h3><p>Frontal, lateral, superior y vista sin puertas con medidas interiores.</p></div>
+      <div class="feat"><h3>Despiece listo</h3><p>Cada pieza con su letra, medidas, material y canto.</p></div>
+      <div class="feat"><h3>Materiales y herrajes</h3><p>Cuántos tableros, metros de cubrecanto, listones y herrajes comprar.</p></div>
+      <div class="feat"><h3>Armado paso a paso</h3><p>Secuencia numerada y vista explosionada con las piezas identificadas.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="wrap">
+    <div class="eyebrow">Catálogo completo</div>
+    <h2>200 planos en 10 categorías</h2>
+    <p class="sub">Toda la casa, de la sala al jardín, con el mismo nivel de detalle.</p>
+    <div class="cats">
+      <div class="cat"><b>20</b><span>Sala</span></div>
+      <div class="cat"><b>20</b><span>Comedor</span></div>
+      <div class="cat"><b>20</b><span>Recámara</span></div>
+      <div class="cat"><b>20</b><span>Cocina</span></div>
+      <div class="cat"><b>20</b><span>Estudio y oficina</span></div>
+      <div class="cat"><b>20</b><span>Cuarto infantil</span></div>
+      <div class="cat"><b>20</b><span>Baño</span></div>
+      <div class="cat"><b>20</b><span>Recibidor</span></div>
+      <div class="cat"><b>20</b><span>Almacenamiento y lavandería</span></div>
+      <div class="cat"><b>20</b><span>Exterior y terraza</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="comprar">
+  <div class="wrap">
+    <div class="eyebrow" style="text-align:center">Tu pedido</div>
+    <h2 style="text-align:center">Llévate los 200 planos hoy</h2>
+    <div class="offer">
+      <div class="price"><b>$149 MXN</b></div>
+      <p class="note">Pago único. Sin suscripciones.</p>
+      <ul>
+        <li>Catálogo PDF de 414 páginas con índice y enlaces</li>
+        <li>200 planos individuales en PDF (vistas, despiece y armado)</li>
+        <li>Lista de corte, materiales y herrajes de cada mueble</li>
+        <li>Guía para leer los planos y criterios de construcción</li>
+        <li>Acceso inmediato y de por vida</li>
+      </ul>
+      <a class="btn hotmart-link" href="#comprar">Quiero los 200 planos</a>
+      <p class="pay">Pago seguro con Hotmart · Tarjeta de crédito, débito u OXXO<br>Garantía de 7 días: si no te sirve, te devolvemos tu dinero.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="eyebrow">Preguntas frecuentes</div>
+    <h2>Antes de comprar</h2>
+    <div class="faq">
+      <details><summary>¿Cómo recibo los planos?</summary><p>Al confirmarse el pago recibes un correo de Hotmart con tu acceso. Desde ahí descargas el catálogo y los planos individuales cuando quieras.</p></details>
+      <details><summary>¿Puedo pagar en OXXO?</summary><p>Sí. En el pago eliges OXXO, te da una referencia y pagas en efectivo. El acceso llega cuando se acredita el pago (suele tardar unas horas).</p></details>
+      <details><summary>¿Necesito experiencia?</summary><p>Cada plano indica su nivel (básico, intermedio o avanzado), el tiempo estimado y las herramientas. Hay muebles para empezar con herramientas básicas y otros para talleres.</p></details>
+      <details><summary>¿Qué materiales usan?</summary><p>Melamina de 15 y 18 mm, MDF de 3 mm para fondos, pino cepillado, tablero alistonado y pino tratado para exterior. Todas las medidas están en milímetros y puedes adaptarlas a tu espacio.</p></details>
+      <details><summary>¿Los planos son físicos?</summary><p>No. Es un producto digital: descargas los PDF y los usas en tu celular, tablet o computadora, o los imprimes.</p></details>
+      <details><summary>¿Puedo vender los muebles que fabrique?</summary><p>Los planos son para uso personal. Si quieres fabricar los muebles para vender, escríbenos a contacto@byignis.shop y te pasamos la licencia comercial.</p></details>
+      <details><summary>¿Y si no me gusta?</summary><p>Tienes 7 días de garantía. Si no te sirve, pides el reembolso desde Hotmart y te devolvemos tu dinero.</p></details>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a class="btn hotmart-link" href="#comprar">Quiero los 200 planos · $149 MXN</a>
+    <p>© 2026 byignis · Planos para uso personal; prohibida su reproducción o reventa.<br>Contacto: <a href="mailto:contacto@byignis.shop" style="color:inherit">contacto@byignis.shop</a></p>
+  </div>
+</footer>
+
+<div class="sticky">
+  <div><b>$149 MXN</b><small>200 planos · PDF</small></div>
+  <a class="btn hotmart-link" href="#comprar">Comprar ahora</a>
+</div>
+
+<script>
+  // ==== PEGA AQUÍ tu link de pago de Hotmart (Links de divulgación → Página de pago) ====
+  var HOTMART_CHECKOUT = "https://pay.hotmart.com/TU-CODIGO";
+  if (HOTMART_CHECKOUT.indexOf("TU-CODIGO") === -1) {
+    document.querySelectorAll(".hotmart-link").forEach(function (a) { a.href = HOTMART_CHECKOUT; });
+  }
+</script>
+</body>
+</html>
