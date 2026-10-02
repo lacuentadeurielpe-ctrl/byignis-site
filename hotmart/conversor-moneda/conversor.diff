@@ -1,0 +1,172 @@
+diff --git a/src/app/api/moneda/route.ts b/src/app/api/moneda/route.ts
+new file mode 100644
+index 0000000..cb62514
+--- /dev/null
++++ b/src/app/api/moneda/route.ts
+@@ -0,0 +1,31 @@
++/**
++ * País del visitante (lo da Vercel en x-vercel-ip-country) y tipo de cambio desde soles a su moneda.
++ * Lo usa <PrecioLocal> para mostrar el precio aproximado en la moneda local; el cobro real lo hace Hotmart.
++ */
++export const dynamic = 'force-dynamic'
++
++const MONEDA_POR_PAIS: Record<string, string> = {
++  PE: 'PEN', MX: 'MXN', CL: 'CLP', CO: 'COP', AR: 'ARS', BO: 'BOB', EC: 'USD', US: 'USD', ES: 'EUR',
++  GT: 'GTQ', CR: 'CRC', PA: 'USD', DO: 'DOP', UY: 'UYU', PY: 'PYG', SV: 'USD', HN: 'HNL', NI: 'NIO',
++  VE: 'USD', BR: 'BRL', PR: 'USD', CA: 'CAD',
++}
++
++async function tasaDesdeSoles(moneda: string): Promise<number | null> {
++  try {
++    const r = await fetch('https://open.er-api.com/v6/latest/PEN', { next: { revalidate: 6 * 3600 } })
++    if (!r.ok) return null
++    const d = (await r.json()) as { result?: string; rates?: Record<string, number> }
++    const tasa = d.result === 'success' ? d.rates?.[moneda] : undefined
++    return typeof tasa === 'number' && tasa > 0 ? tasa : null
++  } catch {
++    return null
++  }
++}
++
++export async function GET(request: Request) {
++  const pais = (request.headers.get('x-vercel-ip-country') ?? '').toUpperCase()
++  const moneda = MONEDA_POR_PAIS[pais]
++  const tasa = moneda && moneda !== 'PEN' ? await tasaDesdeSoles(moneda) : null
++  const cuerpo = tasa ? { pais, moneda, tasa } : { pais, moneda: 'PEN', tasa: 1 }
++  return Response.json(cuerpo, { headers: { 'Cache-Control': 'private, max-age=3600' } })
++}
+diff --git a/src/components/Landing.tsx b/src/components/Landing.tsx
+index ad9869a..f00d93a 100644
+--- a/src/components/Landing.tsx
++++ b/src/components/Landing.tsx
+@@ -3,6 +3,7 @@ import { PRODUCTOS, soles, type Segmento } from '@/lib/config'
+ import { CATEGORIAS, PLANOS, hojaSrc, isoSrc, medidas, plano } from '@/lib/planos'
+ import { enlaceHotmart, TEXTO_PAGO, usaHotmart } from '@/lib/pago'
+ import { BotonComprar } from './BotonComprar'
++import { NotaPrecio, PrecioLocal } from './PrecioLocal'
+ import { Pie } from './Pie'
+ import { TrackOnMount } from './Pixel'
+ 
+@@ -50,6 +51,7 @@ export function Landing({ seg, variante }: { seg: Segmento; variante: 'a' | 'b'
+   const heroIso = plano(seg.destacados[0])
+   const href = `/checkout?s=${seg.id}${variante === 'b' ? '&v=b' : ''}`
+   const hotmart = usaHotmart ? enlaceHotmart(seg.id) : ''
++  const precio = usaHotmart ? <PrecioLocal pen={CAT.precio} /> : soles(CAT.precio)
+ 
+   return (
+     <>
+@@ -75,7 +77,7 @@ export function Landing({ seg, variante }: { seg: Segmento; variante: 'a' | 'b'
+               </ul>
+               <div className="hero-cta">
+                 <BotonComprar className="btn" hotmart={hotmart} checkout={href} valor={CAT.precio}>
+-                  Quiero los 200 planos · {soles(CAT.precio)}
++                  Quiero los 200 planos · {precio}
+                 </BotonComprar>
+                 <div className="micro">
+                   <span>Descarga inmediata</span>
+@@ -216,13 +218,15 @@ export function Landing({ seg, variante }: { seg: Segmento; variante: 'a' | 'b'
+             </div>
+             <div>
+               <div className="precio">
+-                {soles(CAT.precio)}
++                {precio}
+                 <small>pago único</small>
+               </div>
+               <p className="extras-nota" style={{ marginBottom: 18 }}>
+-                {usaHotmart
+-                  ? 'Un solo pago, sin suscripciones. Fuera de Perú, Hotmart te muestra el precio en tu moneda.'
+-                  : 'Precio final en soles. Un solo pago, sin suscripciones.'}
++                {usaHotmart ? (
++                  <NotaPrecio pen={CAT.precio}>Un solo pago, sin suscripciones. Fuera de Perú, Hotmart te muestra el precio en tu moneda.</NotaPrecio>
++                ) : (
++                  'Precio final en soles. Un solo pago, sin suscripciones.'
++                )}
+               </p>
+               <BotonComprar className="btn btn-block" hotmart={hotmart} checkout={href} valor={CAT.precio}>
+                 Quiero los 200 planos
+@@ -258,7 +262,7 @@ export function Landing({ seg, variante }: { seg: Segmento; variante: 'a' | 'b'
+             {titulo[0]} {titulo[1]}
+           </h2>
+           <BotonComprar className="btn" hotmart={hotmart} checkout={href} valor={CAT.precio}>
+-            Quiero los 200 planos · {soles(CAT.precio)}
++            Quiero los 200 planos · {precio}
+           </BotonComprar>
+           <p className="micro" style={{ justifyContent: 'center', marginTop: 12 }}>
+             <span>Descarga inmediata</span>
+@@ -271,7 +275,7 @@ export function Landing({ seg, variante }: { seg: Segmento; variante: 'a' | 'b'
+ 
+       <div className="barra-compra">
+         <div className="p">
+-          {soles(CAT.precio)}
++          {precio}
+           <small>200 planos · PDF</small>
+         </div>
+         <BotonComprar className="btn" hotmart={hotmart} checkout={href} valor={CAT.precio}>
+diff --git a/src/components/PrecioLocal.tsx b/src/components/PrecioLocal.tsx
+new file mode 100644
+index 0000000..891f686
+--- /dev/null
++++ b/src/components/PrecioLocal.tsx
+@@ -0,0 +1,62 @@
++'use client'
++
++import { useEffect, useState } from 'react'
++
++/**
++ * Precio en la moneda del visitante (aproximado, al tipo de cambio del día). En Perú, o si no se puede
++ * detectar el país o la tasa, se muestra el precio en soles tal cual.
++ */
++type Info = { pais: string; moneda: string; tasa: number }
++
++let pedido: Promise<Info | null> | null = null
++function obtenerInfo() {
++  pedido ??= fetch('/api/moneda')
++    .then((r) => (r.ok ? (r.json() as Promise<Info>) : null))
++    .catch(() => null)
++  return pedido
++}
++
++const soles = (n: number) => `S/ ${n.toFixed(2).replace(/\.00$/, '')}`
++
++function formatear(pen: number, info: Info) {
++  const decimales = info.moneda === 'USD' || info.moneda === 'EUR' || info.moneda === 'CAD' ? 2 : 0
++  const valor = pen * info.tasa
++  try {
++    const txt = new Intl.NumberFormat(`es-${info.pais}`, {
++      style: 'currency',
++      currency: info.moneda,
++      currencyDisplay: 'narrowSymbol',
++      minimumFractionDigits: decimales,
++      maximumFractionDigits: decimales,
++    }).format(valor)
++    return info.moneda === 'EUR' ? `≈ ${txt}` : `≈ ${txt} ${info.moneda}`
++  } catch {
++    return null
++  }
++}
++
++function usePrecioLocal(pen: number) {
++  const [local, setLocal] = useState<string | null>(null)
++  useEffect(() => {
++    let vivo = true
++    obtenerInfo().then((info) => {
++      if (vivo && info && info.moneda !== 'PEN') setLocal(formatear(pen, info))
++    })
++    return () => {
++      vivo = false
++    }
++  }, [pen])
++  return local
++}
++
++export function PrecioLocal({ pen }: { pen: number }) {
++  const local = usePrecioLocal(pen)
++  return <>{local ?? soles(pen)}</>
++}
++
++/** Nota bajo el precio: en Perú muestra `children`; fuera, aclara el equivalente en soles. */
++export function NotaPrecio({ pen, children }: { pen: number; children: React.ReactNode }) {
++  const local = usePrecioLocal(pen)
++  if (!local) return <>{children}</>
++  return <>Equivale a {soles(pen)}. Un solo pago, sin suscripciones: Hotmart te cobra en tu moneda al tipo de cambio del día.</>
++}
