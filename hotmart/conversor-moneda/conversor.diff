@@ -1,9 +1,9 @@
 diff --git a/src/app/api/moneda/route.ts b/src/app/api/moneda/route.ts
 new file mode 100644
-index 0000000..cb62514
+index 0000000..330d255
 --- /dev/null
 +++ b/src/app/api/moneda/route.ts
-@@ -0,0 +1,31 @@
+@@ -0,0 +1,33 @@
 +/**
 + * País del visitante (lo da Vercel en x-vercel-ip-country) y tipo de cambio desde soles a su moneda.
 + * Lo usa <PrecioLocal> para mostrar el precio aproximado en la moneda local; el cobro real lo hace Hotmart.
@@ -29,7 +29,9 @@ index 0000000..cb62514
 +}
 +
 +export async function GET(request: Request) {
-+  const pais = (request.headers.get('x-vercel-ip-country') ?? '').toUpperCase()
++  // ?pais=MX permite probar cómo se ve la página desde otro país
++  const prueba = new URL(request.url).searchParams.get('pais')
++  const pais = (prueba || request.headers.get('x-vercel-ip-country') || '').toUpperCase()
 +  const moneda = MONEDA_POR_PAIS[pais]
 +  const tasa = moneda && moneda !== 'PEN' ? await tasaDesdeSoles(moneda) : null
 +  const cuerpo = tasa ? { pais, moneda, tasa } : { pais, moneda: 'PEN', tasa: 1 }
@@ -104,10 +106,10 @@ index ad9869a..f00d93a 100644
          <BotonComprar className="btn" hotmart={hotmart} checkout={href} valor={CAT.precio}>
 diff --git a/src/components/PrecioLocal.tsx b/src/components/PrecioLocal.tsx
 new file mode 100644
-index 0000000..891f686
+index 0000000..abe272e
 --- /dev/null
 +++ b/src/components/PrecioLocal.tsx
-@@ -0,0 +1,62 @@
+@@ -0,0 +1,63 @@
 +'use client'
 +
 +import { useEffect, useState } from 'react'
@@ -120,7 +122,8 @@ index 0000000..891f686
 +
 +let pedido: Promise<Info | null> | null = null
 +function obtenerInfo() {
-+  pedido ??= fetch('/api/moneda')
++  const prueba = new URLSearchParams(window.location.search).get('pais')
++  pedido ??= fetch(prueba ? `/api/moneda?pais=${encodeURIComponent(prueba)}` : '/api/moneda')
 +    .then((r) => (r.ok ? (r.json() as Promise<Info>) : null))
 +    .catch(() => null)
 +  return pedido
