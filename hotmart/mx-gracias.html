@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>¡Gracias por tu compra! · byignis</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--ink:#211f1c;--line-dark:#3b3732;--muted-dark:#c9c2b8;--sand:#f7f3ee;--line:#e3dcd2;--muted:#6b645c;--ember:#d1542a;--ember-dark:#b54420}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Barlow,system-ui,sans-serif;background:var(--sand);color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .hero{background:var(--ink);color:#fff;padding:28px 20px 64px}
+  .wrap{max-width:720px;margin:0 auto}
+  .brand{font-family:'Barlow Condensed';font-weight:700;font-size:28px;margin-bottom:48px}
+  .ok{width:56px;height:56px;border-radius:50%;background:var(--ember);display:grid;place-items:center;font-size:30px;font-weight:700;margin-bottom:20px}
+  h1{font-family:'Barlow Condensed';font-size:clamp(44px,8vw,68px);line-height:1}
+  .hero p{color:var(--muted-dark);font-size:19px;margin-top:16px}
+  main{padding:48px 20px 64px}
+  h2{font-family:'Barlow Condensed';font-size:36px;line-height:1;margin-bottom:20px}
+  ol{list-style:none;counter-reset:s}
+  li{counter-increment:s;background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 18px 18px 64px;position:relative;margin-bottom:12px}
+  li::before{content:counter(s);position:absolute;left:18px;top:16px;width:32px;height:32px;border-radius:50%;background:var(--ember);color:#fff;font-weight:700;display:grid;place-items:center}
+  li b{display:block;font-size:17px}
+  li span{color:var(--muted);font-size:15px}
+  .btn{display:inline-flex;justify-content:center;background:var(--ember);color:#fff;font-weight:700;font-size:17px;padding:15px 26px;border-radius:999px;text-decoration:none;margin-top:20px}
+  .btn:hover{background:var(--ember-dark)}
+  .help{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:15px}
+  .help a{color:var(--ink);font-weight:600}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="brand">byignis</div>
+    <div class="ok">✓</div>
+    <h1>¡Gracias por tu compra!</h1>
+    <p>Ya tienes tus 200 planos de muebles para el hogar. Así los descargas:</p>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <h2>Cómo acceder a tus planos</h2>
+    <ol>
+      <li><b>Revisa tu correo</b><span>Hotmart te envió un correo con tu acceso al correo que usaste en la compra. Si no lo ves, busca en Spam o Promociones.</span></li>
+      <li><b>Entra a tu cuenta de Hotmart</b><span>Inicia sesión con ese mismo correo y ve a <strong>Mis compras</strong>. Ahí está el catálogo y los 200 planos en PDF.</span></li>
+      <li><b>Descarga e imprime</b><span>Empieza por el catálogo de 414 páginas: tiene índice con enlaces a cada plano y la guía para leerlos.</span></li>
+    </ol>
+    <a class="btn" href="https://consumer.hotmart.com/">Ir a Mis compras en Hotmart</a>
+    <p class="help">¿Pagaste en OXXO? Tu acceso llega cuando se acredita el pago, normalmente en unas horas.<br>
+    ¿Algún problema con la descarga? Escríbenos a <a href="mailto:contacto@byignis.shop">contacto@byignis.shop</a> y te ayudamos.</p>
+  </div>
+</main>
+</body>
+</html>

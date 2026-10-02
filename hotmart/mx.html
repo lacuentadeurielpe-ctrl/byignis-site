@@ -254,11 +254,52 @@
 </div>
 
 <script>
-  // ==== PEGA AQUÍ tu link de pago de Hotmart (Links de divulgación → Página de pago) ====
+  // ================= CONFIGURA AQUÍ =================
+  // 1) Tu link de pago de Hotmart (Links de divulgación → Página de pago / Checkout)
   var HOTMART_CHECKOUT = "https://pay.hotmart.com/TU-CODIGO";
-  if (HOTMART_CHECKOUT.indexOf("TU-CODIGO") === -1) {
-    document.querySelectorAll(".hotmart-link").forEach(function (a) { a.href = HOTMART_CHECKOUT; });
-  }
+  // 2) true = el checkout se abre encima de esta página (sin salir).
+  //    Si al probar no se abre bien, ponlo en false y el botón irá directo al checkout.
+  var CHECKOUT_ENCIMA = true;
+  // 3) Tu píxel de Meta (es el mismo de byignis.shop)
+  var META_PIXEL_ID = "28522373627419563";
+  // ==================================================
+
+  // Píxel de Meta: PageView + ViewContent
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', META_PIXEL_ID);
+  fbq('track', 'PageView');
+  fbq('track', 'ViewContent', { content_name: '200 planos de muebles', value: 149, currency: 'MXN' });
+
+  (function () {
+    if (HOTMART_CHECKOUT.indexOf("TU-CODIGO") !== -1) return; // aún sin configurar: los botones bajan a la oferta
+
+    // Pasa las UTM del anuncio al checkout para saber de qué campaña vino cada venta
+    var url = new URL(HOTMART_CHECKOUT);
+    var here = new URLSearchParams(location.search);
+    ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "src", "sck"].forEach(function (k) {
+      if (here.get(k)) url.searchParams.set(k, here.get(k));
+    });
+    if (!url.searchParams.get("sck")) url.searchParams.set("sck", here.get("utm_source") || "web-mx");
+    if (CHECKOUT_ENCIMA) url.searchParams.set("checkoutMode", "2");
+
+    document.querySelectorAll(".hotmart-link").forEach(function (a) {
+      a.href = url.toString();
+      if (CHECKOUT_ENCIMA) a.classList.add("hotmart-fb", "hotmart__button-checkout");
+      a.addEventListener("click", function () {
+        fbq('track', 'InitiateCheckout', { value: 149, currency: 'MXN' });
+      });
+    });
+
+    if (CHECKOUT_ENCIMA) {
+      var w = document.createElement("script");
+      w.src = "https://static.hotmart.com/checkout/widget.min.js";
+      document.body.appendChild(w);
+    }
+  })();
 </script>
 </body>
 </html>
