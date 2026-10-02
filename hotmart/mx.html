@@ -282,7 +282,7 @@
     // Pasa las UTM del anuncio al checkout para saber de qué campaña vino cada venta
     var url = new URL(HOTMART_CHECKOUT);
     var here = new URLSearchParams(location.search);
-    ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "src", "sck"].forEach(function (k) {
+    ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "src", "sck", "xcod"].forEach(function (k) {
       if (here.get(k)) url.searchParams.set(k, here.get(k));
     });
     // Sin Utmify, marcamos el origen en "sck". Con Utmify, su script se encarga de eso.
