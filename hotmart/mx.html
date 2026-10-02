@@ -262,6 +262,8 @@
   var CHECKOUT_ENCIMA = true;
   // 3) Tu píxel de Meta (es el mismo de byignis.shop)
   var META_PIXEL_ID = "28522373627419563";
+  // 4) true = usas Utmify para rastrear ventas por anuncio (carga su script de UTMs)
+  var UTMIFY = true;
   // ==================================================
 
   // Píxel de Meta: PageView + ViewContent
@@ -283,7 +285,8 @@
     ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "src", "sck"].forEach(function (k) {
       if (here.get(k)) url.searchParams.set(k, here.get(k));
     });
-    if (!url.searchParams.get("sck")) url.searchParams.set("sck", here.get("utm_source") || "web-mx");
+    // Sin Utmify, marcamos el origen en "sck". Con Utmify, su script se encarga de eso.
+    if (!UTMIFY && !url.searchParams.get("sck")) url.searchParams.set("sck", here.get("utm_source") || "web-mx");
     if (CHECKOUT_ENCIMA) url.searchParams.set("checkoutMode", "2");
 
     document.querySelectorAll(".hotmart-link").forEach(function (a) {
@@ -293,6 +296,15 @@
         fbq('track', 'InitiateCheckout', { value: 149, currency: 'MXN' });
       });
     });
+
+    // Script de UTMs de Utmify: lleva las UTM del anuncio hasta el checkout de Hotmart
+    if (UTMIFY) {
+      var u = document.createElement("script");
+      u.src = "https://cdn.utmify.com.br/scripts/utms/latest.js";
+      u.setAttribute("data-utmify-prevent-subids", "");
+      u.async = true;
+      document.head.appendChild(u);
+    }
 
     if (CHECKOUT_ENCIMA) {
       var w = document.createElement("script");
