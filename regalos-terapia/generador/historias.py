@@ -16,6 +16,10 @@ def main():
 .hist-head h2 {{ font-size: 26pt; margin-top: 2mm }}
 .duenio {{ font-size: 9pt; color: {C['gris']}; white-space: nowrap; border-bottom: 1.4px solid {C['linea']}; padding-bottom: 1mm; min-width: 52mm }}
 .vinetas {{ display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr; gap: 5mm; margin-top: 7mm; height: 202mm }}
+.cuento {{ display: grid; grid-template-columns: 1fr; grid-auto-rows: 1fr; gap: 3mm; margin-top: 6mm; height: 204mm }}
+.cuento .vin {{ grid-template-columns: 19mm 1fr; min-height: 0; padding: 0 6mm 0 2.4mm; gap: 5mm; border-radius: 4mm }}
+.cuento .vin .pic {{ width: 19mm; height: 19mm; padding: 1.6mm }}
+.cuento .vin .tx {{ font-size: 13pt; font-weight: 600; line-height: 1.38 }}
 .vin {{ display: grid; grid-template-columns: 34mm 1fr; gap: 4mm; align-items: center; border: 1.6px solid {C['linea']}; border-radius: 5mm; padding: 4mm 5mm 4mm 4mm; min-height: 46mm; position: relative; background: #fff }}
 .vin .pic {{ width: 34mm; height: 34mm; background: {C['crema']}; border-radius: 4mm; padding: 2.6mm }}
 .vin .tx {{ font-size: 12.5pt; font-weight: 700; line-height: 1.35 }}
@@ -47,13 +51,13 @@ def main():
     portada_ic = ''.join(f'<div style="width:34mm;height:34mm;background:#fff;border-radius:8mm;padding:4mm;box-shadow:0 3mm 8mm rgba(31,36,51,.08)">{ic(x)}</div>' for x in ['escuela', 'feliz', 'doctor', 'amigos', 'avion', 'pastel'])
     pag(f'''<div class="kicker">Material para casa, aula y terapia</div>
 <h1>50 Historias<br>sociales</h1>
-<p class="lead" style="max-width:150mm">Cuentos cortos con pictogramas que preparan al niño para situaciones nuevas o difíciles: el médico, el colegio, las emociones, los amigos y las salidas. Ideal para niños con TEA, TDAH y dificultades de comunicación.</p>
+<p class="lead" style="max-width:150mm">Cuentos ilustrados que preparan al niño para situaciones nuevas o difíciles: el médico, el colegio, las emociones, los amigos y las salidas. Ideal para niños con TEA, TDAH y dificultades de comunicación.</p>
 <div style="display:flex;gap:3mm;margin-top:8mm;flex-wrap:wrap">{''.join(f'<span class="chip" style="background:{COLCAT[k]}">{v[0]}</span>' for k, v in CATS.items())}</div>
 <div style="position:absolute;right:22mm;bottom:28mm;display:grid;grid-template-columns:repeat(3,34mm);gap:6mm">{portada_ic}</div>
 <div style="position:absolute;left:22mm;bottom:22mm;font-weight:900;font-size:14pt">Byignis</div>''', 'portada')
 
     pag(f'''<div class="kicker">Antes de empezar</div><h2 style="margin:3mm 0 4mm">Qué son las historias sociales</h2>
-<p class="lead">Una historia social es un cuento corto, escrito en primera persona, que explica de forma clara y tranquila qué va a pasar en una situación, qué pueden sentir los demás y qué puede hacer el niño.</p>
+<p class="lead">Una historia social es un cuento corto, contado por el propio niño, que narra una situación de principio a fin: qué pasa, qué siente, qué sienten los demás y cómo lo resuelve. Así, cuando llega el momento real, ya lo vivió en el cuento.</p>
 <div class="grid2" style="margin-top:7mm">
 <div class="caja"><h4>¿Para quién son?</h4><p>Para niños a los que les cuesta anticipar, tolerar cambios o entender situaciones sociales: niños con TEA, TDAH, ansiedad o dificultades de lenguaje. También para cualquier niño ante algo nuevo.</p></div>
 <div class="caja"><h4>¿Por qué funcionan?</h4><p>Saber qué va a pasar reduce la ansiedad. Las imágenes ayudan a entender sin muchas palabras, y la repetición convierte lo desconocido en algo familiar.</p></div></div>
@@ -82,12 +86,9 @@ def main():
         for h in [x for x in historias if x[0] == k]:
             cat, titulo, vinetas, nota = h
             nv = len(vinetas)
-            celdas = ''
-            for j, (p, t) in enumerate(vinetas, 1):
-                fin = ' fin' if (j == nv and nv % 2 == 1) else ''
-                celdas += f'<div class="vin{fin}"><span class="n" style="background:{col}">{j}</span><div class="pic">{ic(p)}</div><div class="tx">{e(t)}</div></div>'
+            celdas = ''.join(f'<div class="vin"><div class="pic">{ic(p)}</div><div class="tx">{e(t)}</div></div>' for p, t in vinetas)
             pag(f'''<div class="hist-head"><div><div class="kicker" style="color:{col}">Historia {n_hist[id(h)]:02d} · {nombre}</div><h2>{e(titulo)}</h2></div><div class="duenio">Esta historia es de: </div></div>
-<div class="vinetas">{celdas}</div>
+<div class="cuento">{celdas}</div>
 <div class="nota-adulto" style="border-color:{col}"><b style="color:{col}">Nota para el adulto</b>{e(nota)}</div>''')
 
     for t, nb in [('Crea tu propia historia', 6), ('Crea tu propia historia', 8)]:
