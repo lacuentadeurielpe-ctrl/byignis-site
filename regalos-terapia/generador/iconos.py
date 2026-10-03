@@ -48,6 +48,12 @@ I = {
  'reloj': f'<circle cx="50" cy="50" r="36" fill="#fff" {S}/><path d="M50 26 v24 l14 10" fill="none" {S}/>',
  'lapiz': f'<path d="M20 80 l8 -22 l40 -40 l14 14 l-40 40 z" fill="{C["mostaza"]}" {S}/><path d="M20 80 l8 -22 l14 14 z" fill="#F2C9A0" {S}/><path d="M64 22 l14 14" {S}/>',
  'mochila': f'<rect x="22" y="26" width="56" height="62" rx="12" fill="{C["verde"]}" {S}/><path d="M38 26 v-6 a12 12 0 0 1 24 0 v6" fill="none" {S}/><rect x="32" y="56" width="36" height="20" rx="4" fill="#fff" {S}/>',
+ 'tijeras': f'<circle cx="28" cy="72" r="13" fill="{C["naranja"]}" {S}/><circle cx="72" cy="72" r="13" fill="{C["naranja"]}" {S}/><path d="M36 62 L70 14 M64 62 L30 14" {S}/><circle cx="50" cy="40" r="3" fill="{T}"/>',
+ 'pinza': f'<rect x="38" y="10" width="11" height="80" rx="4" fill="{C["mostaza"]}" {S}/><rect x="51" y="10" width="11" height="80" rx="4" fill="{C["mostaza"]}" {S}/><path d="M34 48 c10 -6 22 -6 32 0" fill="none" stroke="{C["gris"]}" stroke-width="5" stroke-linecap="round"/>',
+ 'bloques': f'<rect x="18" y="56" width="30" height="30" rx="3" fill="{C["azul"]}" {S}/><rect x="52" y="56" width="30" height="30" rx="3" fill="{C["rojo"]}" {S}/><rect x="35" y="22" width="30" height="30" rx="3" fill="{C["mostaza"]}" {S}/>',
+ 'pompon': f'<circle cx="34" cy="62" r="16" fill="{C["rosa"]}" {S}/><circle cx="64" cy="58" r="14" fill="{C["turquesa"]}" {S}/><circle cx="50" cy="32" r="14" fill="{C["mostaza"]}" {S}/>',
+ 'pegamento': f'<rect x="32" y="34" width="36" height="54" rx="6" fill="{C["morado"]}" {S}/><rect x="38" y="16" width="24" height="18" rx="3" fill="#fff" {S}/><path d="M32 54 h36" stroke="#fff" stroke-width="4"/>',
+ 'cordon': f'<path d="M14 70 c14 -40 30 10 44 -24 c10 -24 26 -10 30 -30" fill="none" {S} stroke="{C["rojo"]}" stroke-width="6"/><rect x="82" y="8" width="8" height="16" rx="2" fill="{T}" transform="rotate(30 86 16)"/>',
 }
 
 def icono(nombre, flecha=None, size='100%'):
